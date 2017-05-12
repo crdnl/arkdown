@@ -38,7 +38,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "eslint:reccommended",
+      "eslint:recommended",
       "google"
     ]
   }
