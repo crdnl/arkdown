@@ -1,0 +1,24 @@
+{
+  "name": "halo-cafe   ",
+  "version": "0.0.1",
+  "description": "Back with another brew",
+  "repository": {
+    "type": "git",
+    "url": "https://dev.fractalcore.net/git/qmarchi/halo-cafe.git"
+  },
+  "author": "Quinton Marchi",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha --reporter spec",
+    "postinstall": "npm rebuild node-sass"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1"
+  },
+  "eslintConfig": {
+    "extends": ["eslint:reccommended", "google"]
+  }
+}

@@ -1,0 +1,24 @@
+# Standard Runtime Things
+pids
+logs
+tmp
+
+# On Build Items
+public/css/main.css
+
+# Secret Stuff
+.env
+
+# Dependency Directories
+node_modules
+bower_components
+
+# Editors
+## IntelliJ Series
+.idea
+*.iml
+
+# OS Files
+## macOS
+.DS_Store
+Thumbs.db
