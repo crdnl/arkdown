@@ -32,16 +32,17 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "errorhandler": "^1.5.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3"
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb"
-    ]
+    "eslint-plugin-mocha": "^4.9.0",
+    "eslint-plugin-react": "^6.10.3",
+    "mocha": "^3.3.0",
+    "sinon": "^2.2.0",
+    "sinon-mongoose": "^2.0.1",
+    "supertest": "^3.0.0"
   }
 }

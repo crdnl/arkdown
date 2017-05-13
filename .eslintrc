@@ -1,0 +1,16 @@
+{
+	"env": {
+		"node": true,
+		"mocha": true
+	},
+    "extends": [
+      "airbnb"
+    ],
+    "plugins": [
+      "mocha"
+    ],
+    "rules": {
+		"no-tabs": "off",
+        "indent": ["error", "tab"]
+    }
+  }
