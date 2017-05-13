@@ -10,7 +10,17 @@
       "mocha"
     ],
     "rules": {
+		// No Dangling Allowed
+		"comma-dangle": ["error", "never"],
+
+		// Enables Tab Usage
 		"no-tabs": "off",
-        "indent": ["error", "tab"]
+        "indent": ["error", "tab"],
+
+		// Double Quotes vs Single Quotes
+		"quotes": [2, "double", "avoid-escape"],
+
+		// KISS
+		"complexity": [1, 5]
     }
   }
