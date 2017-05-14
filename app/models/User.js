@@ -1,19 +1,20 @@
 const bcrypt = require("bcrypt-nodejs");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-// TODO: Import Content
+const { nameValidator } = require("../lib/validators");
 
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
-	name: { type: String, unique: true },
+	name: { type: String, unique: true, validate: nameValidator },
 	email: { type: String, unique: true },
 
 	password: { type: String, required: true },
 	passwordResetToken: String,
 	passwordResetExpires: Date,
 
-	content: [],
-	liked: [],
+	content: [{ type: Schema.Types.ObjectId, ref: "Content" }],
+	liked: [{ type: Schema.Types.ObjectId, ref: "Content" }],
 
 	profilePicture: String
 }, { timestamps: true });
@@ -64,6 +65,6 @@ userSchema.methods.gravatar = (size) => {
 	return `https://grabatar.com/avatar/${md5}?s=${size}&d=retro`;
 };
 
-const User = mongoose.model("User", userSchema);
+const userModel = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = userModel;
