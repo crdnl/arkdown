@@ -17,6 +17,8 @@ bower_components
 ## IntelliJ Series
 .idea
 *.iml
+## VSCode
+.vscode
 
 # OS Files
 ## macOS
