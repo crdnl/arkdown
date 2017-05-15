@@ -200,6 +200,10 @@ basic-auth@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-1.1.0.tgz#45221ee429f7ee1e5035be3f51533f1cdfd29884"
 
+bcrypt-nodejs@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/bcrypt-nodejs/-/bcrypt-nodejs-0.0.3.tgz#c60917f26dc235661566c681061c303c2b28842b"
+
 bcrypt-pbkdf@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.1.tgz#63bc5dcb61331b92bc05fd528953c33462a06f8d"
@@ -572,6 +576,10 @@ dicer@0.2.5:
 diff@3.2.0, diff@^3.1.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.2.0.tgz#c9ce393a4b7cbd0b058a725c93df299027868ff9"
+
+dirty-chai@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/dirty-chai/-/dirty-chai-1.2.2.tgz#78495e619635f7fe44219aa4c837849bf183142e"
 
 doctrine@1.5.0, doctrine@^1.2.2:
   version "1.5.0"
@@ -1644,6 +1652,13 @@ mongodb@2.2.26, "mongodb@>= 1.2.0 <3.0.0":
     mongodb-core "2.1.10"
     readable-stream "2.2.7"
 
+mongoose-validator@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/mongoose-validator/-/mongoose-validator-1.2.6.tgz#ef7c0f13c2b02616a34e058b0c9fe47ae47a063c"
+  dependencies:
+    underscore "^1.8.3"
+    validator "^4.0.2"
+
 mongoose@^4.9.8:
   version "4.9.8"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.9.8.tgz#ef64304231dc2455ab15a0c0cb6c149ce8c787bb"
@@ -2539,6 +2554,10 @@ uid-safe@~2.1.4:
   dependencies:
     random-bytes "~1.0.0"
 
+underscore@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
+
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
@@ -2573,6 +2592,12 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
+
+validator@^4.0.2:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-4.9.0.tgz#082ffce2a76148ff07a8e89e9c2ba43aaf12ec4c"
+  dependencies:
+    depd "1.1.0"
 
 validator@~6.2.0:
   version "6.2.1"
