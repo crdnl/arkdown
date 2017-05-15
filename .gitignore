@@ -7,7 +7,8 @@ tmp
 public/css/main.css
 
 # Secret Stuff
-.env
+config/config.json
+config/passport.js
 
 # Dependency Directories
 node_modules
