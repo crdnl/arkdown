@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "uikit": "^3.0.0"
+    "materialize": "^0.98.2"
   }
 }
