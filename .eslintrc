@@ -3,19 +3,19 @@
 		"node": true,
 		"mocha": true
 	},
-    "extends": [
-      "airbnb"
-    ],
-    "plugins": [
-      "mocha"
-    ],
-    "rules": {
+	"extends": [
+		"airbnb"
+	],
+	"plugins": [
+		"mocha"
+	],
+	"rules": {
 		// No Dangling Allowed
 		"comma-dangle": ["error", "never"],
 
 		// Enables Tab Usage
 		"no-tabs": "off",
-        "indent": ["error", "tab"],
+		"indent": ["error", "tab"],
 
 		// Double Quotes vs Single Quotes
 		"quotes": [2, "double", "avoid-escape"],
@@ -34,5 +34,5 @@
 
 		// Allow Console.log
 		"no-console": 0
-    }
-  }
+	}
+}
