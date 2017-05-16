@@ -69,7 +69,6 @@ app.use(logger("dev")); // Enable Logging
 app.use(bodyParser.json()); // Enable POST JSON Parsing
 app.use(bodyParser.urlencoded({ extended: true })); // Enable POST URLEncoded Parsing
 app.use(expressValidator()); // Request Validation
-console.log(process.env.MONGODB_URI);
 app.use(session({ // Enable Session Tracking
 	resave: false, // MongoDB Supports `touch`
 	saveUninitialized: true,

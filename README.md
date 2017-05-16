@@ -1,4 +1,4 @@
-# HaloCafe
+# EDShare
 Back with another brew
 
 ## Read the wiki!
