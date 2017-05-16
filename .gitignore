@@ -12,7 +12,7 @@ config/passport.js
 
 # Dependency Directories
 node_modules
-bower_components
+app/bower_components
 
 # Editors
 ## IntelliJ Series

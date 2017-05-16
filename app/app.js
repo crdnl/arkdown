@@ -104,7 +104,8 @@ app.use((req, res, next) => { // After login, redirect back to page
 
 	next();
 });
-app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })); // Static Content
+app.use(express.static(path.join(__dirname, "bower_components"), { maxAge: 31557600000 })); // Bower Content
 
 /**
  * Index Routes

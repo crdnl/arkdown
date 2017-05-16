@@ -1,0 +1,21 @@
+{
+  "name": "edshare",
+  "description": "Back with another brew",
+  "main": "app/app.js",
+  "authors": [
+    "Quinton Marchi"
+  ],
+  "license": "MIT",
+  "homepage": "https://share.eldewrito.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "uikit": "^3.0.0"
+  }
+}
