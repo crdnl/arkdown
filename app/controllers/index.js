@@ -1,3 +1,3 @@
 module.exports.index = (req, res) => {
-	res.send(200);
+	res.render("index", { title: "Home" });
 };
