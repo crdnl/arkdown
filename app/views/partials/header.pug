@@ -1,0 +1,35 @@
+ul#account-dd.dropdown-content.black
+	li
+		a(href="/user/settings").red-text.text-darken-2 Settings
+	li
+		a(href="/user/qmarchi").red-text.text-darken-2 My Profile
+	li
+		a(href="/user/qmarchi/content").red-text.text-darken-2 My Content
+	li
+		a(href="/user/qmarchi/favorites").red-text.text-darken-2 Favorites
+
+nav.red.darken-2
+	div.nav-wrapper.container
+		a.brand-logo(href="/") EDShare
+
+		ul.nav-mobile.right
+			li(class=(title == "Top") ? "active" : undefined)
+				a(href="/content/top") Top
+			li(class=(title == "New") ? "active" : undefined)
+				a(href="/content/new") New
+			li.red.darken-2
+				a.red-text.text-darken-2 &nbsp;
+			
+			if !user
+				li(class=(title == "Register") ? "active" : undefined).grey.darken-4
+					a(href="/user/register") Register
+				li(class=(title == "Login") ? "active" : undefined).black
+					a(href="/user/login") Login
+			else
+				li(class=(title == "Add Content") ? "active" : undefined).grey.darken-4
+					a(href="/content/add") Add Content
+				li(class=(title == "Account") ? "active" : undefined).black
+					a(data-activates="account-dd" data-belowOrigin="true" data-constrainWidth="false").dropdown-button qmarchi
+						i.material-icons.right arrow_drop_down
+
+				
