@@ -136,12 +136,12 @@ app.route("/user/signup") // Signup Route
  * User Profile Routes
  */
 /*
-app.route("/user/:id") // Profile Route
+app.route("/user/:name") // Profile Route
 	.get(profileController.getProfile)
 	.post(profileController.postProfile);
-app.route("/user/:id/content") // User Content
+app.route("/user/:name/content") // User Content
 	.get(profileController.getContent);
-app.route("/user/:id/liked") // Liked Content
+app.route("/user/:name/liked") // Liked Content
 	.get(profileController.getLiked);
 */
 
