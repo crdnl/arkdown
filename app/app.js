@@ -33,6 +33,7 @@ const config = require("../config/config.json");
  */
 const indexController = require("./controllers/index");
 // const userController = require("./controllers/user");
+const userController = require("./controllers/user");
 // const contentController = require("./controllers/content");
 // const profileController = require("./controllers/profile");
 
@@ -115,10 +116,10 @@ app.route("/") // Index Route
 /**
  * Authentication Routes
  */
-/* app.route("/user/login") // Login Route
+app.route("/user/login") // Login Route
 	.get(userController.getLogin)
 	.post(userController.postLogin);
-app.route("/user/logout")
+/* app.route("/user/logout")
 	.use(passportConfig.isAuthenticated)
 	.get(userController.logout); // Logout Route
 app.route("/user/forgot") // Forgot Password Route
