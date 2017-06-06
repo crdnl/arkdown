@@ -1,18 +1,8 @@
 const config = require("../../config/config");
 const bluebird = require("bluebird");
 const crypto = bluebird.promisifyAll(require("crypto"));
-const Mailjet = require("node-mailjet").connect(config.mailjet.apikey, config.mailjet.secret);
 const passport = require("passport");
 const User = require("../models/User");
-
-
-/**
- * MailJet Instance
- */
-const mjinstance = Mailjet(config.mailjet.apikey, config.mailjet.secret, {
-	secure: true,
-	output: "json"
-});
 
 /**
  * GET
