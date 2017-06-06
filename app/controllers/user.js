@@ -15,7 +15,8 @@ const mjinstance = Mailjet(config.mailjet.apikey, config.mailjet.secret, {
 });
 
 /**
- * GET /user/login
+ * GET
+ * /user/login
  * Login Page
  */
 exports.getLogin = (req, res) => {
@@ -29,7 +30,8 @@ exports.getLogin = (req, res) => {
 };
 
 /**
- * POST /user/login
+ * POST
+ * /user/login
  * Validate and Authenticate
  */
 exports.postLogin = (req, res, next) => {
