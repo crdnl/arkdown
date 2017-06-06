@@ -5,7 +5,7 @@ if messages.error
 				.card-content.white-text
 					span.card-title Oops!
 					for error in messages.error
-						p= error
+						p= error.msg
 
 if messages.info
 	.row
@@ -14,7 +14,7 @@ if messages.info
 				.card-content.white-text
 					span.card-title Hey, Listen!
 					for info in messages.info
-						p= info
+						p= info.msg
 
 if messages.success
 	.row
@@ -23,4 +23,4 @@ if messages.success
 				.card-content.white-text
 					span.card-title Winning!
 					for success in messages.success
-						p= success
+						p= success.msg

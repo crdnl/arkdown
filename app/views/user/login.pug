@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+	h1 Login
+	hr
+	.row.valign-wrapper.section
+		form(action="/user/login" method="post").col.s12.m4
+			input(type="hidden" name="_csrf" value=_csrf)
+			.row
+				.input-field.col.s12.red-text
+					i.material-icons.prefix account_circle
+					input(placeholder="Username" type="email" name="email")#email.active.validate
+				.input-field.col.s12
+					i.material-icons.prefix.red-text vpn_key
+					input(placeholder="Password" type="password" name="password")#password.active.validate
+				button.btn.waves-effect(type="submit" name="action").right.red.darken-2 Login
+					i.material-icons.right send
+		.col.m6
+			h3 Welcome Back!
+			hr
+			include benefits
+			

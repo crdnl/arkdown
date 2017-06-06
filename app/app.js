@@ -32,7 +32,6 @@ const config = require("../config/config.json");
  * Contollers
  */
 const indexController = require("./controllers/index");
-// const userController = require("./controllers/user");
 const userController = require("./controllers/user");
 // const contentController = require("./controllers/content");
 // const profileController = require("./controllers/profile");
@@ -40,7 +39,7 @@ const userController = require("./controllers/user");
 /**
  * Passport Config and API Keys
  */
-const passportConfig = require("../config/passport");
+const passportConfig = require("./lib/passport");
 
 const app = express();
 
@@ -123,13 +122,14 @@ app.route("/success") // Success Test Route
 /**
  * Authentication Routes
  */
+app.get("/user", userController.getIndex); // User Index Route
 app.route("/user/login") // Login Route
 	.get(userController.getLogin)
 	.post(userController.postLogin);
-/* app.route("/user/logout")
-	.use(passportConfig.isAuthenticated)
-	.get(userController.logout); // Logout Route
-app.route("/user/forgot") // Forgot Password Route
+app.route("/user/logout")
+	.all(passportConfig.isAuthenticated)
+	.get(userController.getLogout); // Logout Route
+/* app.route("/user/forgot") // Forgot Password Route
 	.get(userController.getForgot)
 	.post(userController.postForgot);
 app.route("/user/reset/:token") // Reset Password Route
