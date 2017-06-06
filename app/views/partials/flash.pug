@@ -1,0 +1,26 @@
+if messages.error
+	.row
+		.col.s12
+			.card.red
+				.card-content.white-text
+					span.card-title Oops!
+					for error in messages.error
+						p= error
+
+if messages.info
+	.row
+		.col.s12
+			.card.blue.darken-2
+				.card-content.white-text
+					span.card-title Hey, Listen!
+					for info in messages.info
+						p= info
+
+if messages.success
+	.row
+		.col.s12
+			.card.green
+				.card-content.white-text
+					span.card-title Winning!
+					for success in messages.success
+						p= success

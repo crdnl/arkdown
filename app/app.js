@@ -74,13 +74,14 @@ app.use(session({ // Enable Session Tracking
 	resave: false, // MongoDB Supports `touch`
 	saveUninitialized: true,
 	secret: config.secret,
+	cookie: { secure: false },
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection
 	})
 }));
+app.use(flash()); // Enable Message Flashes
 app.use(passport.initialize()); // Initialize Passport
 app.use(passport.session()); // Inject Passport Session
-app.use(flash()); // Enable Message Flashes
 app.use((req, res, next) => { // Disable CSRF Checking on Image Upload
 	if (req.path === "/image/upload") {
 		next();
@@ -112,6 +113,12 @@ app.use(express.static(path.join(__dirname, "bower_components"), { maxAge: 31557
  */
 app.route("/") // Index Route
 	.get(indexController.index);
+app.route("/error") // Error Test Route
+	.get(indexController.error);
+app.route("/info") // Info Test Route
+	.get(indexController.info);
+app.route("/success") // Success Test Route
+	.get(indexController.success);
 
 /**
  * Authentication Routes
