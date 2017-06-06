@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate");
 const { nameValidator, shortDescValidator } = require("../lib/validators");
 
 const Schema = mongoose.Schema;
@@ -37,6 +38,8 @@ contentSchema.pre("save", (next) => {
 
 	next();
 });
+
+contentSchema.plugin(mongoosePaginate);
 
 const contentModel = mongoose.model("Content", contentSchema);
 
