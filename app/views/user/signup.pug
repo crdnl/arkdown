@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+	h1 Register
+	hr
+	.row.valign-wrapper.section
+		form(action="/user/signup" method="post").col.s12.m4
+			input(type="hidden" name="_csrf" value=_csrf)
+			.row
+				.input-field.col.s12
+					i.material-icons.prefix.red-text email
+					input(placeholder="Email" type="email" name="email")#email.active.validate
+				.input-field.col.s12
+					i.material-icons.prefix.red-text account_circle
+					input(placeholder="Username" type="text" name="name")#name.active.validate
+				.input-field.col.s12
+					i.material-icons.prefix.red-text vpn_key
+					input(placeholder="Password" type="password" name="password")#password.active.validate
+				.input-field.col.s12
+					i.material-icons.prefix.red-text vpn_key
+					input(placeholder="Password (Confirm)" type="password" name="passwordConfirm" data-error="Password not match" data-success="Password Match")#passwordConfirm.active.validate
+				button.btn.waves-effect(type="submit" name="action").right.red.darken-2 Register
+					i.material-icons.right send
+		.col.m6
+			h3 Glad to have you!
+			hr
+			include benefits

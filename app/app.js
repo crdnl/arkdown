@@ -32,14 +32,14 @@ const config = require("../config/config.json");
  * Contollers
  */
 const indexController = require("./controllers/index");
-// const userController = require("./controllers/user");
+const userController = require("./controllers/user");
 // const contentController = require("./controllers/content");
 // const profileController = require("./controllers/profile");
 
 /**
  * Passport Config and API Keys
  */
-const passportConfig = require("../config/passport");
+const passportConfig = require("./lib/passport");
 
 const app = express();
 
@@ -73,13 +73,14 @@ app.use(session({ // Enable Session Tracking
 	resave: false, // MongoDB Supports `touch`
 	saveUninitialized: true,
 	secret: config.secret,
+	cookie: { secure: false },
 	store: new MongoStore({
 		mongooseConnection: mongoose.connection
 	})
 }));
+app.use(flash()); // Enable Message Flashes
 app.use(passport.initialize()); // Initialize Passport
 app.use(passport.session()); // Inject Passport Session
-app.use(flash()); // Enable Message Flashes
 app.use((req, res, next) => { // Disable CSRF Checking on Image Upload
 	if (req.path === "/image/upload") {
 		next();
@@ -89,6 +90,10 @@ app.use((req, res, next) => { // Disable CSRF Checking on Image Upload
 });
 app.use(lusca.xframe("SAMEORIGIN")); // Prevent iFrames from embedding site
 app.use(lusca.xssProtection(true)); // XSS Mitigation
+app.use((req, res, next) => {
+	res.locals.user = req.user;
+	next();
+});
 app.use((req, res, next) => { // After login, redirect back to page
 	if (!req.user &&
 		req.path !== "/user/login" &&
@@ -111,26 +116,34 @@ app.use(express.static(path.join(__dirname, "bower_components"), { maxAge: 31557
  */
 app.route("/") // Index Route
 	.get(indexController.index);
+app.route("/error") // Error Test Route
+	.get(indexController.error);
+app.route("/info") // Info Test Route
+	.get(indexController.info);
+app.route("/success") // Success Test Route
+	.get(indexController.success);
 
 /**
  * Authentication Routes
  */
-/* app.route("/user/login") // Login Route
+app.get("/user", userController.getIndex); // User Index Route
+app.route("/user/login") // Login Route
 	.get(userController.getLogin)
 	.post(userController.postLogin);
 app.route("/user/logout")
-	.use(passportConfig.isAuthenticated)
-	.get(userController.logout); // Logout Route
-app.route("/user/forgot") // Forgot Password Route
+	.all(passportConfig.isAuthenticated)
+	.get(userController.getLogout); // Logout Route
+/* app.route("/user/forgot") // Forgot Password Route
 	.get(userController.getForgot)
 	.post(userController.postForgot);
 app.route("/user/reset/:token") // Reset Password Route
 	.get(userController.getReset)
 	.post(userController.postReset);
+*/
 app.route("/user/signup") // Signup Route
 	.get(userController.getSignup)
 	.post(userController.postSignup);
-*/
+
 
 /**
  * User Profile Routes

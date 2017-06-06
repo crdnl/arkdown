@@ -4,9 +4,9 @@ block content
 	h1 Welcome to EDShare
 	p.lead Back with another Brew
 	hr
-	div.row
-		div.col.s4
-			div.icon-block
+	.row.section
+		.col.s4
+			.icon-block
 				h2.center.red-text.text-darken-2
 					i.material-icons trending_up
 				h5.center
@@ -14,8 +14,8 @@ block content
 				p.center The best and most downloaded content available to anyone and everyone!
 				p.center
 					a(href="/content/top").btn.red.darken-2 View Top
-		div.col.s4
-			div.icon-block
+		.col.s4
+			.icon-block
 				h2.center.red-text.text-darken-2
 					i.material-icons access_time
 				h5.center
@@ -24,26 +24,26 @@ block content
 				p.center
 					a(href="/content/new").btn.red.darken-2 View Newest
 		if !user
-			div.col.s4
-				div.icon-block
+			.col.s4
+				.icon-block
 					h2.center.red-text.text-darken-2
 						i.material-icons account_box
 					h5.center
 						a.red-text.text-darken-2 Login / Register
 					p.center Join the cool kids club!
 					p.center 
-						a(href="/content/top").btn.red.darken-2 Login
+						a(href="/user/login").btn.red.darken-2 Login
 					p.center
-						a(href="/content/top").btn.red.darken-2 Register
+						a(href="/user/signup").btn.red.darken-2 Register
 		else
-			div.col.s4
-				div.icon-block
+			.col.s4
+				.icon-block
 					h2.center.red-text.text-darken-2
 						i.material-icons account_box
 					h5.center
 						a.red-text.text-darken-2 My Account
 					p.center Welcome Back! Glad to see that you're doing A-OK!
 					p.center
-						a(href="/user/qmarchi/content").btn.red.darken-2 My Content
+						a(href="/user/"+user.name+"/content").btn.red.darken-2 My Content
 	hr
-	div.row
+	.section

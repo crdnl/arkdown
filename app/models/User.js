@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
 /**
  * Password Hashing Middleware
  */
-userSchema.pre("save", (next) => {
+userSchema.pre("save", function save(next) {
 	const user = this;
-
+	console.log(user);
 	if (!user.isModified("password")) { return next(); }
 
 	bcrypt.genSalt(10, (err, salt) => {
@@ -43,8 +43,8 @@ userSchema.pre("save", (next) => {
 /**
  * Password Comparison
  */
-userSchema.methods.comparePassword = (candidatePassword, cb) => {
-	bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+userSchema.methods.comparePassword = (candidatePassword, password, cb) => {
+	bcrypt.compare(candidatePassword, password, (err, isMatch) => {
 		cb(err, isMatch);
 	});
 };
