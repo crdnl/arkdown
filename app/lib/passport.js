@@ -17,17 +17,14 @@ passport.deserializeUser((id, done) => {
  * Local Strategy
  */
 passport.use(new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
-	console.log("Local Called");
 	User.findOne({ email: email.toLowerCase() }, (err, user) => {
-		console.log("Local > FindOne Called")
 		if (err) { return done(err); }
 		if (!user) {
 			return done(null, false, { msg: `Email ${email} not found` });
 		}
 
-		user.comparePassword(password, (compErr, isMatch) => {
-			console.log("Local > FindOne > compare Called");
-			if (compErr) { return done(err); }
+		user.comparePassword(password, user.password, (compErr, isMatch) => {
+			if (compErr) { return done(compErr); }
 			if (isMatch) {
 				return done(null, user);
 			}
@@ -41,7 +38,7 @@ passport.use(new LocalStrategy({ usernameField: "email" }, (email, password, don
  * Validate Authentication
  */
 
-module.exports.isAuthenticated = (req, res, next) => {
+exports.isAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	}

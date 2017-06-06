@@ -90,6 +90,10 @@ app.use((req, res, next) => { // Disable CSRF Checking on Image Upload
 });
 app.use(lusca.xframe("SAMEORIGIN")); // Prevent iFrames from embedding site
 app.use(lusca.xssProtection(true)); // XSS Mitigation
+app.use((req, res, next) => {
+	res.locals.user = req.user;
+	next();
+});
 app.use((req, res, next) => { // After login, redirect back to page
 	if (!req.user &&
 		req.path !== "/user/login" &&
@@ -135,10 +139,11 @@ app.route("/user/logout")
 app.route("/user/reset/:token") // Reset Password Route
 	.get(userController.getReset)
 	.post(userController.postReset);
+*/
 app.route("/user/signup") // Signup Route
 	.get(userController.getSignup)
 	.post(userController.postSignup);
-*/
+
 
 /**
  * User Profile Routes
