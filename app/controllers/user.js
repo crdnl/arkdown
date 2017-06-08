@@ -42,7 +42,6 @@ exports.postLogin = (req, res, next) => {
 
 	const errors = req.validationErrors();
 	if (errors) {
-		console.log(errors);
 		req.flash("error", errors);
 		return res.redirect("/user/login");
 	}
