@@ -1,5 +1,6 @@
-.section
-	if messages.error
+
+if messages.error
+	.section
 		.row
 			.col.s12
 				.card.red
@@ -8,7 +9,8 @@
 						for error in messages.error
 							p= error.msg
 
-	if messages.info
+if messages.info
+	.section
 		.row
 			.col.s12
 				.card.blue.darken-2
@@ -17,7 +19,8 @@
 						for info in messages.info
 							p= info.msg
 
-	if messages.success
+if messages.success
+	.section
 		.row
 			.col.s12
 				.card.green

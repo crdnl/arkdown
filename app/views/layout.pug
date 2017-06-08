@@ -14,6 +14,8 @@ html
 		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Nunito")
 		link(rel="stylesheet", href="/materialize/dist/css/materialize.min.css")
 		link(rel="stylesheet", href="/css/main.css")
+		
+		block ext-styles
 
 	body
 		include partials/header
@@ -26,5 +28,5 @@ html
 
 		script(src="/jquery/dist/jquery.min.js")
 		script(src="/materialize/dist/js/materialize.min.js")
-		if (title = "Register")
-			script(src="/js/signup.js")
+
+		block ext-scripts
