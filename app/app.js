@@ -194,6 +194,9 @@ app.route("/content/details/:name") // Content Details
 	.get(contentController.getDetails);
 // app.route("/content/details/:name/:version/download") // Download Content
 //	.get(contentController.getDownload);
+app.route("/content/details/:name/favorite")
+	.all(passportConfig.isAuthenticated)
+	.get(contentController.getFavorite);
 
 /**
  * Error Handler

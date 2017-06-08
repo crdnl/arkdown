@@ -7,39 +7,64 @@ exports.contentIndex = (req, res) => {
 };
 
 exports.getDetails = (req, res) => {
-	req.sanitize("name").escape();
-
 	Content.findOne({ name: req.params.name }, (contentErr, content) => {
 		if (contentErr || content === null) {
 			console.log(contentErr);
+			console.log(content);
 			req.flash("error", { msg: "There was an error loading that content article" });
 			return res.redirect("/");
 		}
 
-		User.findOne({ _id: content._owner }, { name: 1 }, (userErr, user) => {
-			if (userErr || content === null) {
-				console.log(userErr);
-				req.flash("error", { msg: "There was an error loading that content article" });
-				return res.redirect("/");
-			}
+		content.versions.sort((v1, v2) => v2.versionId - v1.versionId);
 
-			content.versions.sort((v1, v2) => { return v2.versionId - v1.versionId; });
+		if (req.accepts("html")) {
+			return res.render("content/details", {
+				title: content.name,
+				content,
+				description: md.render(content.description).body
+			});
+		}
 
-			if (req.accepts("html")) {
-				return res.render("content/details", {
-					title: content.name,
-					content,
-					owner: user,
-					description: md.render(content.description).body
-				});
-			}
-
-			if (req.accepts("json")) {
-				content._owner = user;
-				res.send(content);
-			}
-		});
+		if (req.accepts("json")) {
+			res.send(content);
+		}
 	});
+};
+
+exports.getFavorite = (req, res, next) => {
+	const favIndex = req.user.liked.indexOf(req.params.name);
+
+	if (favIndex > -1) {
+		req.user.liked.splice(index, 1);
+		req.user.save((err) => {
+			if (err) {
+				return next(err);
+			}
+
+			res.redirect(`/content/details/${req.params.name}`);
+			return next();
+		});
+	} else {
+		Content.findOne({ name: req.params.name }, (existsErr, content) => {
+			if (existsErr) {
+				return next(existsErr);
+			}
+
+			if (content == null) {
+				req.flash("error", { msg: "The content you tried to favorite doesn't exist! " });
+				res.redirect("/");
+				return next();
+			}
+
+			req.user.liked.push(req.params.name);
+			req.user.save((err) => {
+				if (err) {
+					return next(err);
+				}
+				res.redirect(`/content/details/${req.params.name}`);
+			});
+		});
+	}
 };
 
 exports.getNew = (req, res) => {
@@ -91,7 +116,6 @@ exports.postAdd = (req, res, next) => {
 	req.assert("headerImage", "Header Image is invalid").matches(/^https?:\/\/(\w+\.)?imgur.com\/(\w*\d\w*)+(\.[a-zA-Z]{3})?$/);
 	req.assert("visibility", "Visibility is somehow not a boolean value.... WTF you doin bruh?").isBoolean();
 
-	req.sanitize("name").escape();
 	req.sanitize("shortDesc").escape();
 
 	const errors = req.validationErrors();
@@ -101,13 +125,17 @@ exports.postAdd = (req, res, next) => {
 		return res.redirect("/content/add");
 	}
 
-	const content = new Content({
+	const newDoc = {
 		name: req.body.name,
 		public: req.body.visibility,
 		shortDesc: req.body.shortDesc,
 		description: req.body.description,
 		headerImage: req.body.headerImage,
-		_owner: req.user._id
+		owner: req.user.name,
+		downloads: 0
+	};
+
+	const content = new Content(newDoc);
 	});
 
 	Content.findOne({ name: req.body.name }, (nameErr, existingName) => {

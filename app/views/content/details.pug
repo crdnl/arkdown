@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-	if user && user.name == owner.name
+	if user && user.name == content.owner
 		.fixed-action-btn
 			.btn-floating.btn-large.red.darken-2.tooltipped(data-position="left" data-tooltip="Edit")
 				i.large.material-icons mode_edit
@@ -14,13 +14,13 @@ block content
 		.col.s12.l8
 			h1= content.name
 			h5 By: 
-				a(href="/user/" + owner.name + "/")= owner.name
-				if user && !user.liked.includes(content._id)
-					a.right.black-text(href="/content/details/" + content.name + "/favorite")
-						i.material-icons favorite_border
-				else
+				a(href="/user/" + content.owner + "/")= content.owner
+				if user && user.liked.includes(content.name)
 					a.right.red-text(href="/content/details/" + content.name + "/favorite")
 						i.material-icons favorite
+				else
+					a.right.black-text(href="/content/details/" + content.name + "/favorite")
+						i.material-icons favorite_border
 			hr
 			.section
 				!= description

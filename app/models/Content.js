@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate");
 
-const Schema = mongoose.Schema;
-
 const contentSchema = new mongoose.Schema({
 	name: { type: String, required: true, unique: true },
 	public: { type: Boolean, default: false },
@@ -14,7 +12,7 @@ const contentSchema = new mongoose.Schema({
 
 	headerImage: String,
 
-	_owner: { type: Schema.Types.ObjectId, ref: "User" },
+	owner: { type: String, required: true },
 
 	updated: { type: Date, default: Date.now() },
 	downloads: { type: Number, default: 0 },

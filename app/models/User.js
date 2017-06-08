@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
 	passwordResetToken: String,
 	passwordResetExpires: Date,
 
-	liked: [{ type: Schema.Types.ObjectId, ref: "Content" }],
+	liked: [String],
 
 	profilePicture: String
 }, { timestamps: true });
