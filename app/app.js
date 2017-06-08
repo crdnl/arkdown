@@ -190,12 +190,10 @@ app.route("/content/add") // Add Content
 	.all(passportConfig.isAuthenticated)
 	.get(contentController.getAdd)
 	.post(contentController.postAdd);
-/*
-app.route("/content/details/:id") // Content Details
+app.route("/content/details/:name") // Content Details
 	.get(contentController.getDetails);
-app.route("/content/details/:id/download") // Download Content
-	.get(contentController.getDownload);
-*/
+// app.route("/content/details/:name/:version/download") // Download Content
+//	.get(contentController.getDownload);
 
 /**
  * Error Handler

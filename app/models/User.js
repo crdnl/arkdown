@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema({
 	passwordResetToken: String,
 	passwordResetExpires: Date,
 
-	content: [{ type: Schema.Types.ObjectId, ref: "Content" }],
 	liked: [{ type: Schema.Types.ObjectId, ref: "Content" }],
 
 	profilePicture: String

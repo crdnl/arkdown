@@ -1,7 +1,45 @@
 const Content = require("../models/Content");
+const User = require("../models/User");
+const md = require("jstransformer")(require("jstransformer-markdown-it"));
 
 exports.contentIndex = (req, res) => {
 	res.redirect("/content/top/1");
+};
+
+exports.getDetails = (req, res) => {
+	req.sanitize("name").escape();
+
+	Content.findOne({ name: req.params.name }, (contentErr, content) => {
+		if (contentErr || content === null) {
+			console.log(contentErr);
+			req.flash("error", { msg: "There was an error loading that content article" });
+			return res.redirect("/");
+		}
+
+		User.findOne({ _id: content._owner }, { name: 1 }, (userErr, user) => {
+			if (userErr || content === null) {
+				console.log(userErr);
+				req.flash("error", { msg: "There was an error loading that content article" });
+				return res.redirect("/");
+			}
+
+			content.versions.sort((v1, v2) => { return v2.versionId - v1.versionId; });
+
+			if (req.accepts("html")) {
+				return res.render("content/details", {
+					title: content.name,
+					content,
+					owner: user,
+					description: md.render(content.description).body
+				});
+			}
+
+			if (req.accepts("json")) {
+				content._owner = user;
+				res.send(content);
+			}
+		});
+	});
 };
 
 exports.getNew = (req, res) => {

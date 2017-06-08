@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+	if user && user.name == owner.name
+		.fixed-action-btn
+			.btn-floating.btn-large.red.darken-2.tooltipped(data-position="left" data-tooltip="Edit")
+				i.large.material-icons mode_edit
+			ul
+				li.btn-floating.red.tooltipped(data-position="left" data-tooltip="Delete")
+					i.material-icons delete
+				li.btn-floating.orange.tooltipped(data-position="left" data-tooltip="Add Version")
+					i.material-icons plus_one
+	.row
+		.col.s12.l8
+			h1= content.name
+			h5 By: 
+				a(href="/user/" + owner.name + "/")= owner.name
+				if user && !user.liked.includes(content._id)
+					a.right.black-text(href="/content/details/" + content.name + "/favorite")
+						i.material-icons favorite_border
+				else
+					a.right.red-text(href="/content/details/" + content.name + "/favorite")
+						i.material-icons favorite
+			hr
+			.section
+				!= description
+		.col.s12.l4
+			.card.small
+				.card-image
+					img(src=content.headerImage)
+				.card-content
+					p= content.shortDesc
+					p &nbsp;
+					for tag in content.tags
+						.chip= tag
+			.section
+				ul.collapsible.popout(data-collapsible="accordion")
+					for version in content.versions
+						li
+							if version.versionId == content.currentVersion
+								.collapsible-header= version.versionId + " (Latest)"
+									a.right(href=url) Download
+							else
+								.collapsible-header= version.versionId
+									a.right(href=url) Download
+							.collapsible-body= version.changelog

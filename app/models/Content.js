@@ -24,7 +24,7 @@ const contentSchema = new mongoose.Schema({
 	versions: [{
 		versionId: Number,
 		url: String,
-		changeLog: String
+		changelog: String
 	}]
 });
 
