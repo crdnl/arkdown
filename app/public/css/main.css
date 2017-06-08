@@ -58,3 +58,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 	border-bottom: 1px solid #dc143c;
 	box-shadow: 0 1px 0 0 #dc143c;
 }
+
+.card-title {
+	text-shadow: 1px 1px 3px #000;
+}
