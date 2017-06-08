@@ -4,8 +4,8 @@ exports.contentIndex = (req, res) => {
 	res.redirect("/content/top/1");
 };
 
-exports.getTop = (req, res) => {
-	Content.paginate({}, { page: req.params.page || 1, limit: 20, sort: "-date" }, (err, results) => {
+exports.getNew = (req, res) => {
+	Content.paginate({}, { page: req.params.page || 1, limit: 20, sort: "-updated" }, (err, results) => {
 		if (req.accepts("html")) {
 			return res.render("content/page", {
 				title: "Top Content",
@@ -21,15 +21,20 @@ exports.getTop = (req, res) => {
 	});
 };
 
-exports.getNew = (req, res) => {
-	res.render("content/page", {
-		title: "Newest Content",
-		results: [{
-			name: "Demo Content",
-			shortDesc: "This is a super short description to demonstrate what the short description is for",
-			headerImage: "https://images.discordapp.net/.eJwFwVEOwiAMANC7cADaleLCbkMYAslmCa0fxnh33_u697rc4brZ1APgHFpknV5NVm7VN5F21TyH-iI3ZLNc-l1fpkCR4oMTYUy4hcQYINC2ExKHlHbiyIzQxuwf38bT_f6-DyHP.stjFXcFZLXvbT_5XbXbtTv5ErrM",
-			tags: ["Forge", "Map", "Infection", "Mod", "MLG", "Classic"]
-		}]
+exports.getTop = (req, res) => {
+	Content.paginate({}, { page: req.params.page || 1, limit: 20, sort: "-downloads" }, (err, results) => {
+		if (req.accepts("html")) {
+			return res.render("content/page", {
+				title: "Top Content",
+				results,
+				base: "top"
+			});
+		}
+
+
+		if (req.accepts("json")) {
+			return res.send(results);
+		}
 	});
 };
 
