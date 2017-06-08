@@ -1,24 +1,23 @@
 const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate");
-const { nameValidator, shortDescValidator } = require("../lib/validators");
 
 const Schema = mongoose.Schema;
 
 const contentSchema = new mongoose.Schema({
-	name: { type: String, required: true, unique: true, validate: nameValidator },
+	name: { type: String, required: true, unique: true },
 	public: { type: Boolean, default: false },
 	approved: { type: Boolean, default: false },
 
-	shortDesc: { type: String, validate: shortDescValidator },
+	shortDesc: { type: String },
 	description: String,
-	tags: [{ type: Schema.Types.ObjectId, ref: "Tag" }],
+	tags: [String],
 
-	icon: String,
 	headerImage: String,
 
 	_owner: { type: Schema.Types.ObjectId, ref: "User" },
 
 	updated: { type: Date, default: Date.now() },
+	downloads: { type: Number, default: 0 },
 
 	currentVersion: { type: Number, default: 0 },
 
@@ -29,7 +28,7 @@ const contentSchema = new mongoose.Schema({
 	}]
 });
 
-contentSchema.pre("save", (next) => {
+contentSchema.pre("save", function save(next) {
 	const content = this;
 
 	if (!content.isModified()) { return next(); }

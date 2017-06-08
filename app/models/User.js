@@ -1,12 +1,11 @@
 const bcrypt = require("bcrypt-nodejs");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const { nameValidator } = require("../lib/validators");
 
 const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
-	name: { type: String, unique: true, validate: nameValidator },
+	name: { type: String, unique: true },
 	email: { type: String, unique: true },
 
 	password: { type: String, required: true },
@@ -24,7 +23,6 @@ const userSchema = new mongoose.Schema({
  */
 userSchema.pre("save", function save(next) {
 	const user = this;
-	console.log(user);
 	if (!user.isModified("password")) { return next(); }
 
 	bcrypt.genSalt(10, (err, salt) => {
