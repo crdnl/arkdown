@@ -1,0 +1,51 @@
+extends ../layout
+
+block ext-styles
+	link(rel="stylesheet" href="/css/imgur.min.css")
+
+block content
+	h1 Add Content
+	hr
+
+	.section
+		form.row(method="post")
+			input(type="hidden" name="_csrf" value=_csrf)
+			.input-field.col.s12.m6.l4
+				i.material-icons.prefix mode_edit
+				input(type="text" name="name")#name.active.validate
+				label(for="name") Name
+			.input-field.col.s12.m6.l8
+				i.material-icons.prefix drag_handle
+				input(type="text" name="shortDesc" data-length="140")#shortDesc.validate
+				label(for="shortDesc") Short Description
+			.input-field.col.s12
+				i.material-icons.prefix format_align_center
+				textarea(data-length="5000" name="description")#description.materialize-textarea
+				label(for="description") Long Descriptions (Markdown)
+			.switch.col.s12.m3.center
+				h5 Visibility
+				label
+					| Private
+					input(type="checkbox" name="visibility")
+					span.lever
+					| Public
+			.col.s12.m8.center
+				.row
+					.col.s12.m3
+						h5 Header Image
+					.col.s12.m9
+						.dropzone
+						input(type="hidden" name="headerImage" value="")#headerImage
+			.col.s12.center
+				button.btn.waves-effect.waves-light.red.darken-2.white-text(type="submit" name="action")
+					if user.name == "Dokbot"
+						| Submit Shitpost
+					else
+						| Submit Content
+					i.material-icons.right send
+
+
+block ext-scripts
+	script(src="/js/imgur.min.js")
+	script(src="/js/add.js")
+	

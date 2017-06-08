@@ -33,7 +33,7 @@ const config = require("../config/config.json");
  */
 const indexController = require("./controllers/index");
 const userController = require("./controllers/user");
-// const contentController = require("./controllers/content");
+const contentController = require("./controllers/content");
 // const profileController = require("./controllers/profile");
 
 /**
@@ -179,17 +179,18 @@ app.route("/user/settings/deleted") // Delete Account
 /**
  * Content Routes
  */
-/*
+
 app.route("/content") // Top Content
+	.get(contentController.contentIndex);
+app.route("/content/top/:page?") // Top Content
 	.get(contentController.getTop);
-app.route("/content/top/:page") // Top Content
-	.get(contentController.getTop);
-app.route("/content/new/:page") // Newest Content
+app.route("/content/new/:page?") // Newest Content
 	.get(contentController.getNew);
 app.route("/content/add") // Add Content
-	.use(passportConfig.isAuthenticated)
+	.all(passportConfig.isAuthenticated)
 	.get(contentController.getAdd)
 	.post(contentController.postAdd);
+/*
 app.route("/content/details/:id") // Content Details
 	.get(contentController.getDetails);
 app.route("/content/details/:id/download") // Download Content

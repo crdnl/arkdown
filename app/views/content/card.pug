@@ -1,0 +1,11 @@
+.card.small
+	.card-image
+		img(src=card.headerImage)
+		span.card-title= card.name
+	.card-content
+		p= card.shortDesc
+		p &nbsp;
+		for tag in card.tags
+			.chip= tag
+	.card-action
+		a(href="/details/"+card.name+"/").red-text.text-darken-2 View Details

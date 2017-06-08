@@ -1,0 +1,19 @@
+extends ../layout
+
+include ../mixin/pagination
+
+block content
+	h1= title
+	hr
+	
+	.section
+		- var count = -3;
+		while count <= results.docs.length
+			- count += 3;
+			.row
+				each card in results.docs.slice(count, count+3)
+					.col.s12.m6.l4
+						include card
+		.center
+			+pagination(1, results.pages, results.page, "/content/" + base + "/")
+			
