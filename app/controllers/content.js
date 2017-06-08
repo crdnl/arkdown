@@ -1,6 +1,10 @@
+const config = require("../../config/config.json");
 const Content = require("../models/Content");
 const User = require("../models/User");
 const md = require("jstransformer")(require("jstransformer-markdown-it"));
+const algolia = require("algoliasearch")(config.algolia.applicationID, config.algolia.api_key);
+
+const index = algolia.initIndex("content");
 
 exports.contentIndex = (req, res) => {
 	res.redirect("/content/top/1");
@@ -136,6 +140,11 @@ exports.postAdd = (req, res, next) => {
 	};
 
 	const content = new Content(newDoc);
+
+	index.addObject(newDoc, (err) => {
+		if (err) {
+			console.error(err);
+		}
 	});
 
 	Content.findOne({ name: req.body.name }, (nameErr, existingName) => {

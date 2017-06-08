@@ -14,6 +14,7 @@
     "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {
+    "algoliasearch": "^3.23.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
