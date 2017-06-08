@@ -3,6 +3,9 @@ const bluebird = require("bluebird");
 const crypto = bluebird.promisifyAll(require("crypto"));
 const passport = require("passport");
 const User = require("../models/User");
+const recaptcha = require("express-recaptcha");
+
+recaptcha.init(config.recaptcha.site_key, config.recaptcha.secret);
 
 /**
  * GET
@@ -99,6 +102,13 @@ exports.postSignup = (req, res, next) => {
 	req.assert("passwordConfirm", "Passwords do not match").equals(req.body.password);
 	req.assert("name", "Username must not be atleast 4 characters").len(4);
 	req.sanitize("email").normalizeEmail({ remove_dots: false });
+
+	recaptcha.verify(req, (reErr) => {
+		if (reErr) {
+			req.flash("error", { msg: "You've failed the reCAPTCHA! Are you a wizard?" });
+			return res.redirect("/user/signup");
+		}
+	});
 
 	const errors = req.validationErrors();
 

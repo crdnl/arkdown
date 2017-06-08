@@ -23,6 +23,7 @@
     "crypto": "0.0.3",
     "express": "^4.15.2",
     "express-flash": "0.0.2",
+    "express-recaptcha": "^2.1.0",
     "express-session": "^1.15.2",
     "express-validator": "^3.2.0",
     "jstransformer": "^1.0.0",
