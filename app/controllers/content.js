@@ -77,7 +77,7 @@ exports.getNew = (req, res) => {
 			return res.render("content/page", {
 				title: "Top Content",
 				results,
-				base: "top"
+				base: "content/top"
 			});
 		}
 
@@ -94,7 +94,7 @@ exports.getTop = (req, res) => {
 			return res.render("content/page", {
 				title: "Top Content",
 				results,
-				base: "top"
+				base: "content/top"
 			});
 		}
 
