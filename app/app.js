@@ -34,7 +34,7 @@ const config = require("../config/config.json");
 const indexController = require("./controllers/index");
 const userController = require("./controllers/user");
 const contentController = require("./controllers/content");
-// const profileController = require("./controllers/profile");
+const profileController = require("./controllers/profile");
 
 /**
  * Passport Config and API Keys
@@ -148,15 +148,12 @@ app.route("/user/signup") // Signup Route
 /**
  * User Profile Routes
  */
-/*
 app.route("/user/:name") // Profile Route
-	.get(profileController.getProfile)
-	.post(profileController.postProfile);
-app.route("/user/:name/content") // User Content
+	.get(profileController.getProfile);
+app.route(["/user/:name/content/:page", "/user/:name/content"]) // User Content
 	.get(profileController.getContent);
-app.route("/user/:name/liked") // Liked Content
+app.route(["/user/:name/liked/:page", "/user/:name/liked"]) // Liked Content
 	.get(profileController.getLiked);
-*/
 
 /**
  * User Settings Routes
@@ -194,9 +191,9 @@ app.route("/content/details/:name") // Content Details
 	.get(contentController.getDetails);
 // app.route("/content/details/:name/:version/download") // Download Content
 //	.get(contentController.getDownload);
-app.route("/content/details/:name/favorite")
+app.route("/content/details/:name/like")
 	.all(passportConfig.isAuthenticated)
-	.get(contentController.getFavorite);
+	.get(contentController.getLike);
 
 /**
  * Error Handler

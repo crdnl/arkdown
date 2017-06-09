@@ -35,7 +35,7 @@ exports.getDetails = (req, res) => {
 	});
 };
 
-exports.getFavorite = (req, res, next) => {
+exports.getLike = (req, res, next) => {
 	const favIndex = req.user.liked.indexOf(req.params.name);
 
 	if (favIndex > -1) {
@@ -55,7 +55,7 @@ exports.getFavorite = (req, res, next) => {
 			}
 
 			if (content == null) {
-				req.flash("error", { msg: "The content you tried to favorite doesn't exist! " });
+				req.flash("error", { msg: "The content you tried to like doesn't exist! " });
 				res.redirect("/");
 				return next();
 			}
