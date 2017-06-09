@@ -122,6 +122,8 @@ exports.postAdd = (req, res, next) => {
 
 	req.sanitize("shortDesc").escape();
 
+	req.body.headerImage = req.body.headerImage.replace(/^http:\/\//i, "https://");
+
 	const errors = req.validationErrors();
 
 	if (errors) {
