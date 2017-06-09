@@ -1,0 +1,15 @@
+{
+    "secret": "CHANGE ME RIGHT NOW",
+    "mongo": {
+        "uri": "mongodb://localhost:27017/edshare"
+    },
+    "recaptcha": {
+        "site_key": "",
+        "secret": ""
+    },
+    "algolia": {
+        "api_key": "",
+        "search_key": "",
+        "applicationID": ""
+    }
+}
