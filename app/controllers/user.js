@@ -87,7 +87,8 @@ exports.getSignup = (req, res) => {
 	}
 
 	res.render("user/signup", {
-		title: "Register"
+		title: "Register",
+		site_key: config.recaptcha.site_key
 	});
 };
 
