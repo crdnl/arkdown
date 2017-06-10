@@ -54,7 +54,7 @@ module.exports.getLiked = (req, res) => {
 			return res.redirect("/");
 		}
 
-		Content.paginate({ name: { $in: user.liked }}, { page: req.params.page, limit: 20, sort: "-updated" }, (err, results) => {
+		Content.paginate({ name: { $in: user.liked } }, { page: req.params.page, limit: 20, sort: "-updated" }, (err, results) => {
 			if (req.accepts("html")) {
 				console.log(results);
 				return res.render("content/page", {

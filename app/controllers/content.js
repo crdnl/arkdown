@@ -108,7 +108,7 @@ exports.getNew = (req, res) => {
 	Content.paginate({}, { page: req.params.page || 1, limit: 20, sort: "-updated" }, (err, results) => {
 		if (req.accepts("html")) {
 			return res.render("content/page", {
-				title: "Top Content",
+				title: "New Content",
 				results,
 				base: "content/top"
 			});
@@ -155,14 +155,14 @@ exports.postAdd = (req, res, next) => {
 
 	req.sanitize("shortDesc").escape();
 
-	req.body.headerImage = req.body.headerImage.replace(/^http:\/\//i, "https://");
-
 	const errors = req.validationErrors();
 
 	if (errors) {
 		req.flash("error", errors);
 		return res.redirect("/content/add");
 	}
+
+	req.body.headerImage = req.body.headerImage.replace(/^http:\/\//i, "https://");
 
 	const newDoc = {
 		name: req.body.name,
@@ -196,3 +196,4 @@ exports.postAdd = (req, res, next) => {
 		});
 	});
 };
+
