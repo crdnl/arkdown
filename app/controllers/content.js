@@ -1,13 +1,46 @@
 const config = require("../../config/config.json");
 const Content = require("../models/Content");
-const User = require("../models/User");
 const md = require("jstransformer")(require("jstransformer-markdown-it"));
 const algolia = require("algoliasearch")(config.algolia.applicationID, config.algolia.api_key);
+const { getVersion } = require("../lib/helpers");
 
 const index = algolia.initIndex("content");
 
 exports.contentIndex = (req, res) => {
 	res.redirect("/content/top/1");
+};
+
+exports.getDownload = (req, res) => {
+	req.assert("version", "Version must be an integer").isInt();
+
+	const errors = req.validationErrors();
+
+	if (errors) {
+		req.flash("error", errors);
+		return res.redirect("/");
+	}
+
+	Content.findOne({ name: req.params.name }, (contentErr, content) => {
+		if (contentErr || content === null) {
+			console.log(contentErr);
+			console.log(content);
+			req.flash("error", { msg: "There was an error loading the content article." });
+			return res.redirect("/");
+		}
+
+		getVersion(content.versions, parseInt(req.params.version, 10), (version) => {
+			console.log(version);
+			if (version === null) {
+				req.flash("error", { msg: "The version specifified doesn't exist!" });
+				return res.redirect(`/content/details/${req.params.name}`);
+			}
+
+			res.redirect(version.url);
+
+			content.downloads += 1;
+			content.save();
+		});
+	});
 };
 
 exports.getDetails = (req, res) => {

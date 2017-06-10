@@ -39,8 +39,8 @@ block content
 						li
 							if version.versionId == content.currentVersion
 								.collapsible-header= version.versionId + " (Latest)"
-									a.right(href=url) Download
+									a.right(href=`/content/details/${content.name}/download/${version.versionId}`) Download
 							else
 								.collapsible-header= version.versionId
-									a.right(href=url) Download
+									a.right(href=href=`/content/details/${content.name}/download/${version.versionId}`) Download
 							.collapsible-body= version.changelog

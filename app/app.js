@@ -189,8 +189,8 @@ app.route("/content/add") // Add Content
 	.post(contentController.postAdd);
 app.route("/content/details/:name") // Content Details
 	.get(contentController.getDetails);
-// app.route("/content/details/:name/:version/download") // Download Content
-//	.get(contentController.getDownload);
+app.route("/content/details/:name/download/:version") // Download Content
+	.get(contentController.getDownload);
 app.route("/content/details/:name/like")
 	.all(passportConfig.isAuthenticated)
 	.get(contentController.getLike);
