@@ -35,6 +35,7 @@ const indexController = require("./controllers/index");
 const userController = require("./controllers/user");
 const contentController = require("./controllers/content");
 const profileController = require("./controllers/profile");
+const settingsController = require("./controllers/settings");
 
 /**
  * Passport Config and API Keys
@@ -158,20 +159,20 @@ app.route(["/user/:name/liked/:page", "/user/:name/liked"]) // Liked Content
 /**
  * User Settings Routes
  */
-/*
+
 app.route("/user/settings") // Settings Route
 	.use(passportConfig.isAuthenticated)
-	.get(userController.getAccount);
+	.get(settingsController.getSettings);
 app.route("/user/settings/info") // Update Settings
 	.use(passportConfig.isAuthenticated)
-	.post(userController.postInfo);
+	.post(settingsController.postInfo);
 app.route("/user/settings/password") // Update Password
 	.use(passportConfig.isAuthenticated)
-	.post(userController.postPassword);
-app.route("/user/settings/deleted") // Delete Account
+	.post(settingsController.postPassword);
+app.route("/user/settings/delete") // Delete Account
 	.use(passportConfig.isAuthenticated)
-	.post(userController.deleteUser)
-*/
+	.get(settingsController.getDelete)
+	.post(settingsController.postDelete);
 
 /**
  * Content Routes
