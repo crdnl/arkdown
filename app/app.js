@@ -161,16 +161,16 @@ app.route(["/user/:name/liked/:page", "/user/:name/liked"]) // Liked Content
  */
 
 app.route("/user/settings") // Settings Route
-	.use(passportConfig.isAuthenticated)
+	.all(passportConfig.isAuthenticated)
 	.get(settingsController.getSettings);
 app.route("/user/settings/info") // Update Settings
-	.use(passportConfig.isAuthenticated)
+	.all(passportConfig.isAuthenticated)
 	.post(settingsController.postInfo);
 app.route("/user/settings/password") // Update Password
-	.use(passportConfig.isAuthenticated)
+	.all(passportConfig.isAuthenticated)
 	.post(settingsController.postPassword);
 app.route("/user/settings/delete") // Delete Account
-	.use(passportConfig.isAuthenticated)
+	.all(passportConfig.isAuthenticated)
 	.get(settingsController.getDelete)
 	.post(settingsController.postDelete);
 
