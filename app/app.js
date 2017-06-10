@@ -145,17 +145,6 @@ app.route("/user/signup") // Signup Route
 	.get(userController.getSignup)
 	.post(userController.postSignup);
 
-
-/**
- * User Profile Routes
- */
-app.route("/user/:name") // Profile Route
-	.get(profileController.getProfile);
-app.route(["/user/:name/content/:page", "/user/:name/content"]) // User Content
-	.get(profileController.getContent);
-app.route(["/user/:name/liked/:page", "/user/:name/liked"]) // Liked Content
-	.get(profileController.getLiked);
-
 /**
  * User Settings Routes
  */
@@ -173,6 +162,16 @@ app.route("/user/settings/delete") // Delete Account
 	.all(passportConfig.isAuthenticated)
 	.get(settingsController.getDelete)
 	.post(settingsController.postDelete);
+
+/**
+ * User Profile Routes
+ */
+app.route("/user/:name") // Profile Route
+	.get(profileController.getProfile);
+app.route(["/user/:name/content/:page", "/user/:name/content"]) // User Content
+	.get(profileController.getContent);
+app.route(["/user/:name/liked/:page", "/user/:name/liked"]) // Liked Content
+	.get(profileController.getLiked);
 
 /**
  * Content Routes
