@@ -26,6 +26,11 @@ module.exports.postInfo = (req, res, next) => {
 	next();
 };
 
+module.exports.postEmail = (req, res, next) => {
+	res.send(200);
+	next();
+};
+
 module.exports.postPassword = (req, res, next) => {
 	res.send(200);
 	next();

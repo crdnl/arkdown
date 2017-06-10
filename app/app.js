@@ -155,6 +155,9 @@ app.route("/user/settings") // Settings Route
 app.route("/user/settings/info") // Update Settings
 	.all(passportConfig.isAuthenticated)
 	.post(settingsController.postInfo);
+app.route("/user/settings/email") // Update Email
+	.all(passportConfig.isAuthenticated)
+	.post(settingsController.postEmail);
 app.route("/user/settings/password") // Update Password
 	.all(passportConfig.isAuthenticated)
 	.post(settingsController.postPassword);
