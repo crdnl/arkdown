@@ -2,8 +2,6 @@ const bcrypt = require("bcrypt-nodejs");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
-
 const userSchema = new mongoose.Schema({
 	name: { type: String, unique: true },
 	email: { type: String, unique: true },
@@ -14,7 +12,7 @@ const userSchema = new mongoose.Schema({
 
 	liked: [String],
 
-	profilePicture: String
+	profileImage: String
 }, { timestamps: true });
 
 /**
