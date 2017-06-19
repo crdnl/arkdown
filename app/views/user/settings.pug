@@ -12,8 +12,8 @@ block content
 				h3 Info
 				hr
 				.section
-					form(action="/user/settings/info").row
-						.input(type="hidden" name="_csrf" value=_csrf)
+					form(action="/user/settings/info" method="post").row
+						input(type="hidden" name="_csrf" value=_csrf)
 						.col.s12
 							.row
 								.col.s12.m4.center
@@ -21,6 +21,8 @@ block content
 								.col.s12.m8
 									.dropzone
 									input(type="hidden" name="profileImage" value="").imgur-hidden
+								.col.s4.offset-s4
+									button(type="submit").btn.waves-effect.right.red.darken-2 Update
 								.col.s12.center
 									h5 Current Profile Picture
 								.col.s12.center
@@ -30,7 +32,7 @@ block content
 				h3 Email
 				hr
 				.row
-					form(action="/user/settings/email")
+					form(action="/user/settings/email" method="post")
 						.input(type="hidden" name="_csrf" value=_csrf)
 						.row
 							.input-field.col.s12
@@ -46,7 +48,7 @@ block content
 				h3 Password
 				hr
 				.row
-					form(action="/user/settings/password").row
+					form(action="/user/settings/password" method="post").row
 						.input(type="hidden" name="_csrf" value=_csrf)
 						.row
 							.input-field.col.s12
