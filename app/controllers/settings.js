@@ -33,9 +33,6 @@ module.exports.postInfo = (req, res) => {
 	});
 };
 
-module.exports.postPassword = (req, res, next) => {
-	res.send(200);
-	next();
 module.exports.postEmail = (req, res) => {
 	console.log(req);
 	req.assert("email", "Email is not valid").isEmail();
@@ -60,12 +57,10 @@ module.exports.postEmail = (req, res) => {
 	});
 };
 
-module.exports.postInfo = (req, res, next) => {
+module.exports.postPassword = (req, res) => {
 	res.send(200);
-	next();
 };
 
-module.exports.postDelete = (req, res, next) => {
+module.exports.postDelete = (req, res) => {
 	res.send(200);
-	next();
 };

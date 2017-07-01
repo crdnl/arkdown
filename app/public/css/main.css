@@ -62,3 +62,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .card-title {
 	text-shadow: 1px 1px 3px #000;
 }
+
+.settings-profile-img {
+	max-width: 75%;
+	height: auto;
+}

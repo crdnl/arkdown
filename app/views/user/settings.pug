@@ -26,14 +26,14 @@ block content
 								.col.s12.center
 									h5 Current Profile Picture
 								.col.s12.center
-									img(src=user.profileImage)
+										img(src=user.profileImage).settings-profile-img.circle
 		.col.s12.l6
 			.section
 				h3 Email
 				hr
 				.row
 					form(action="/user/settings/email" method="post")
-						.input(type="hidden" name="_csrf" value=_csrf)
+						input(type="hidden" name="_csrf" value=_csrf)
 						.row
 							.input-field.col.s12
 								i.material-icons.prefix email
