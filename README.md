@@ -1,7 +1,7 @@
 # dewshare
 Back with another brew
 
-## Read the wiki!
-The Wiki has pretty much all information you could ask for.
+## RTFW
+The wiki should be filled with answers about setting up and running dewshare.
 
-[Click Here](https://dev.fractalcore.net/git/qmarchi/edshare/wiki)
+[Read the Wiki!](https://github.com/crdnl/dewshare/wiki)
