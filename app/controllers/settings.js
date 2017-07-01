@@ -9,7 +9,6 @@ module.exports.getDelete = (req, res) => {
 };
 
 module.exports.postInfo = (req, res) => {
-	console.log(req);
 	req.assert("profileImage", "Header Image is invalid").matches(/^https?:\/\/(\w+\.)?imgur.com\/(\w*\d\w*)+(\.[a-zA-Z]{3})?$/);
 
 	const errors = req.validationErrors();
@@ -34,8 +33,8 @@ module.exports.postInfo = (req, res) => {
 };
 
 module.exports.postEmail = (req, res) => {
-	console.log(req);
 	req.assert("email", "Email is not valid").isEmail();
+	req.assert("emailConfirm", "Emails do not match").equals(req.body.email);
 	req.sanitize("email").normalizeEmail({ remove_dots: false });
 
 	const errors = req.validationErrors();
@@ -49,7 +48,7 @@ module.exports.postEmail = (req, res) => {
 
 	req.user.save((error) => {
 		if (error) {
-			req.flash("error", { msg: "There was an error updating the profile image." });
+			req.flash("error", { msg: "There was an error updating your Email." });
 			return res.redirect("/user/settings");
 		}
 		req.flash("success", "Your Email was successfully updated.");
