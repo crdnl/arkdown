@@ -191,7 +191,10 @@ exports.postAdd = (req, res, next) => {
 		}
 
 		content.save((contentErr) => {
-			if (contentErr) { return next(contentErr); }
+			if (contentErr) {
+				req.flash("error", { msg: "There was an error adding the content!" });
+				return res.redirect("/content/add");
+			}
 			return res.redirect(`/content/details/${req.body.name}/`);
 		});
 	});
