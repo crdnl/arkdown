@@ -36,6 +36,28 @@ module.exports.postInfo = (req, res) => {
 module.exports.postPassword = (req, res, next) => {
 	res.send(200);
 	next();
+module.exports.postEmail = (req, res) => {
+	console.log(req);
+	req.assert("email", "Email is not valid").isEmail();
+	req.sanitize("email").normalizeEmail({ remove_dots: false });
+
+	const errors = req.validationErrors();
+
+	if (errors) {
+		req.flash("error", errors);
+		return res.redirect("/user/settings");
+	}
+
+	req.user.email = req.body.email;
+
+	req.user.save((error) => {
+		if (error) {
+			req.flash("error", { msg: "There was an error updating the profile image." });
+			return res.redirect("/user/settings");
+		}
+		req.flash("success", "Your Email was successfully updated.");
+		return res.redirect("/user/settings");
+	});
 };
 
 module.exports.postInfo = (req, res, next) => {
