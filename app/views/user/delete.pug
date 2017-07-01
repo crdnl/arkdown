@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+	h1 Delete User Account
+	hr
+	.row.valign-wrapper.section
+		form(action="/user/settings/delete" method="post").col.s12.m4
+			input(type="hidden" name="_csrf" value=_csrf)
+			.row
+				.col.s12
+					p.center Verify your information to continue
+				.input-field.col.s12
+					i.material-icons.prefix email
+					input(placeholder="Email" type="email" name="email")#email.active.validate
+				.input-field.col.s12
+					i.material-icons.prefix vpn_key
+					input(placeholder="Password" type="password" name="password")#password.active.validate
+				button.btn.waves-effect(type="submit" name="action" data-position="bottom" data-tooltip="This will instantly delete your account!" data-delay="0").right.red.darken-2.tooltipped Goodbye
+					i.material-icons.right send
+		.col.m6.center
+			h3 Sad Kitty is Sad!!1!
+			hr
+			img(src="http://i.imgur.com/a71l4N8.gif").responsive-img.section

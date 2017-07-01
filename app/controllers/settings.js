@@ -1,3 +1,6 @@
+const User = require("../models/User");
+const Content = require("../models/Content");
+
 module.exports.getSettings = (req, res) => {
 	res.render("user/settings", {
 		title: "User Setttings"
@@ -5,7 +8,9 @@ module.exports.getSettings = (req, res) => {
 };
 
 module.exports.getDelete = (req, res) => {
-	res.send(200);
+	res.render("user/delete", {
+		title: "Delete User"
+	});
 };
 
 module.exports.postInfo = (req, res) => {
@@ -80,5 +85,38 @@ module.exports.postPassword = (req, res) => {
 };
 
 module.exports.postDelete = (req, res) => {
-	res.send(200);
+	req.assert("email", "Email is not valid.").isEmail();
+	req.assert("password", "Password cannot be blank.").notEmpty();
+	req.sanitize("email").normalizeEmail({ remove_dots: false });
+	req.assert("email", "Email must match logged on user.").equals(req.user.email);
+
+	const errors = req.validationErrors();
+
+	if (errors) {
+		req.flash("error", errors);
+		return res.redirect("/user/login");
+	}
+
+	User.findOne({ email: req.user.email }, (err, user) => {
+		user.comparePassword(req.body.password, user.password, (compareErr, isMatch) => {
+			if (!isMatch || compareErr) {
+				req.flash("error", { msg: "The password entered doesn't match!" });
+				return res.redirect("/user/settings/delete");
+			}
+
+			Content.find({ owner: user.name }).remove().exec();
+
+			req.logout();
+
+			user.remove((userErr) => {
+				if (userErr) {
+					req.flash("err", { msg: "Something REALLY fucked up happened. Contact qmarchi ASAP!!" });
+					return res.redirect("/");
+				}
+
+				req.flash("info", { msg: "It's all gone. Sad kitty is even more sad now." });
+				res.redirect("/");
+			});
+		});
+	});
 };
