@@ -35,6 +35,7 @@ const indexController = require("./controllers/index");
 const userController = require("./controllers/user");
 const contentController = require("./controllers/content");
 const profileController = require("./controllers/profile");
+const settingsController = require("./controllers/settings");
 
 /**
  * Passport Config and API Keys
@@ -144,6 +145,26 @@ app.route("/user/signup") // Signup Route
 	.get(userController.getSignup)
 	.post(userController.postSignup);
 
+/**
+ * User Settings Routes
+ */
+
+app.route("/user/settings") // Settings Route
+	.all(passportConfig.isAuthenticated)
+	.get(settingsController.getSettings);
+app.route("/user/settings/info") // Update Settings
+	.all(passportConfig.isAuthenticated)
+	.post(settingsController.postInfo);
+app.route("/user/settings/email") // Update Email
+	.all(passportConfig.isAuthenticated)
+	.post(settingsController.postEmail);
+app.route("/user/settings/password") // Update Password
+	.all(passportConfig.isAuthenticated)
+	.post(settingsController.postPassword);
+app.route("/user/settings/delete") // Delete Account
+	.all(passportConfig.isAuthenticated)
+	.get(settingsController.getDelete)
+	.post(settingsController.postDelete);
 
 /**
  * User Profile Routes
@@ -154,24 +175,6 @@ app.route(["/user/:name/content/:page", "/user/:name/content"]) // User Content
 	.get(profileController.getContent);
 app.route(["/user/:name/liked/:page", "/user/:name/liked"]) // Liked Content
 	.get(profileController.getLiked);
-
-/**
- * User Settings Routes
- */
-/*
-app.route("/user/settings") // Settings Route
-	.use(passportConfig.isAuthenticated)
-	.get(userController.getAccount);
-app.route("/user/settings/info") // Update Settings
-	.use(passportConfig.isAuthenticated)
-	.post(userController.postInfo);
-app.route("/user/settings/password") // Update Password
-	.use(passportConfig.isAuthenticated)
-	.post(userController.postPassword);
-app.route("/user/settings/deleted") // Delete Account
-	.use(passportConfig.isAuthenticated)
-	.post(userController.deleteUser)
-*/
 
 /**
  * Content Routes

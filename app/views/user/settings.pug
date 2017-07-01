@@ -1,0 +1,71 @@
+extends ../layout
+
+block ext-styles
+	link(rel="stylesheet" href="/css/imgur.min.css")
+
+block content
+	h1 User Settings
+	hr
+	.row
+		.col.s12.l6
+			.section
+				h3 Info
+				hr
+				.section
+					form(action="/user/settings/info" method="post").row
+						input(type="hidden" name="_csrf" value=_csrf)
+						.col.s12
+							.row
+								.col.s12.m4.center
+									h5 Profile Picture
+								.col.s12.m8
+									.dropzone
+									input(type="hidden" name="profileImage" value="").imgur-hidden
+								.col.s4.offset-s4
+									button(type="submit").btn.waves-effect.right.red.darken-2 Update
+								.col.s12.center
+									h5 Current Profile Picture
+								.col.s12.center
+										img(src=user.profileImage).settings-profile-img.circle
+		.col.s12.l6
+			.section
+				h3 Email
+				hr
+				.row
+					form(action="/user/settings/email" method="post")
+						input(type="hidden" name="_csrf" value=_csrf)
+						.row
+							.input-field.col.s12
+								i.material-icons.prefix email
+								input(type="email" name="email")#email
+								label(for="email") Email
+							.input-field.col.s12
+								i.material-icons.prefix email
+								input(type="email" name="emailConfirm")#emailConfirm
+								label(for="emailConfirm") Email (Confirm)
+							button(type="submit").btn.waves-effect.right.red.darken-2 Change Email
+			.section
+				h3 Password
+				hr
+				.row
+					form(action="/user/settings/password" method="post").row
+						input(type="hidden" name="_csrf" value=_csrf)
+						.row
+							.input-field.col.s12
+								i.material-icons.prefix vpn_key
+								input(type="password" name="password")#password
+								label(for="password") Password
+							.input-field.col.s12
+								i.material-icons.prefix vpn_key
+								input(type="password" name="passwordConfirm")#passwordConfirm
+								label(for="passwordConfirm") Password (Confirm)
+							button(type="submit").btn.waves-effect.right.red.darken-2 Change Password
+			.section
+				h3 Dangerous Stuff
+				hr
+				.row
+					h6.col.s12.center Delete Account: &nbsp;
+						a.btn.red(href="/user/settings/delete") Delete
+
+block ext-scripts
+	script(src="/js/imgur.js")

@@ -35,7 +35,7 @@ block content
 						h5 Header Image
 					.col.s12.m9
 						.dropzone
-						input(type="hidden" name="headerImage" value="")#headerImage
+						input(type="hidden" name="headerImage" value="").imgur-hidden#headerImage
 			.col.s12.center
 				button.btn.waves-effect.waves-light.red.darken-2.white-text(type="submit" name="action")
 					if user.name == "Dokbot"
@@ -46,6 +46,5 @@ block content
 
 
 block ext-scripts
-	script(src="/js/imgur.min.js")
-	script(src="/js/add.js")
+	script(src="/js/imgur.js")
 	
