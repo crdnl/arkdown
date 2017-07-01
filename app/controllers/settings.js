@@ -57,7 +57,26 @@ module.exports.postEmail = (req, res) => {
 };
 
 module.exports.postPassword = (req, res) => {
-	res.send(200);
+	req.assert("password", "Password must be at least 4 characters long.").len(4);
+	req.assert("passwordConfirm", "Passwords do not match").equals(req.body.password);
+
+	const errors = req.validationErrors();
+
+	if (errors) {
+		req.flash("error", errors);
+		return res.redirect("/user/settings");
+	}
+
+	req.user.password = req.body.password;
+
+	req.user.save((error) => {
+		if (error) {
+			req.flash("error", { msg: "There was an error updating your password." });
+			return res.redirect("/user/settings");
+		}
+		req.flash("success", { msg: "Your password was successfully updated." });
+		return res.redirect("/user/settings");
+	});
 };
 
 module.exports.postDelete = (req, res) => {
