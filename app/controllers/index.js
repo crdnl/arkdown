@@ -1,11 +1,19 @@
+const Content = require("../models/Content");
+
 /**
  * GET
  * /
  * Index Route
  */
-
 module.exports.index = (req, res) => {
-	res.render("index", { title: "Home" });
+	Content.find({}).sort({ updated: "desc" }).limit(3).exec((newestErr, newest) => {
+		if (newestErr) { return res.send(500); }
+
+		res.render("index", {
+			title: "Home",
+			newest
+		});
+	});
 };
 
 module.exports.error = (req, res) => {

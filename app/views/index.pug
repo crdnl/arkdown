@@ -45,5 +45,10 @@ block content
 					p.center Welcome Back! Glad to see that you're doing A-OK!
 					p.center
 						a(href="/user/"+user.name+"/content").btn.red.darken-2 My Content
-	hr
 	.section
+		h3 Lastest Updates
+		.row
+			each card in newest
+				.col.s12.m6.l4
+					include content/card
+	
