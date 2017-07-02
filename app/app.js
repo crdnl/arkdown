@@ -207,5 +207,5 @@ app.use(errorHandler());
  * Start Express
  */
 app.listen(app.get("port"), () => {
-	console.log("%s EDShare is running on port %d.", chalk.green("✓"), app.get("port"));
+	console.log("%s arkdown is running on port %d.", chalk.green("✓"), app.get("port"));
 });

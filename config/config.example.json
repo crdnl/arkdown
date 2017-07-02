@@ -1,7 +1,7 @@
 {
     "secret": "CHANGE ME RIGHT NOW",
     "mongo": {
-        "uri": "mongodb://localhost:27017/edshare"
+        "uri": "mongodb://localhost:27017/arkdown"
     },
     "recaptcha": {
         "site_key": "",

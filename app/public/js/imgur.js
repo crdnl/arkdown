@@ -84,7 +84,7 @@
     }, a
 });
 
-/*! dewshare configuration */
+/*! arkdown configuration */
 
 const callback = function(res) {
 	if (res.success === true) {
