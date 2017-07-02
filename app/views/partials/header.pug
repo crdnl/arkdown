@@ -26,12 +26,13 @@ nav.red.darken-2
 			if !user
 				li(class=(title == "Register") ? "active" : undefined).grey.darken-4
 					a(href="/user/signup") Register
-				li(class=(title == "Login") ? "active" : undefined).black
+				li.black
 					a(href="/user/login") Login
 			else
-				li(class=(title == "Add Content") ? "active" : undefined).grey.darken-4
-					a(href="/content/add") Add Content
-				li(class=(title == "Account") ? "active" : undefined).black
+				li(data-tooltip="Add Content" data-delay="0").black.tooltipped
+					a(href="/content/add")
+						i.material-icons add
+				li.black
 					a(data-activates="account-dd" data-belowOrigin="true" data-constrainWidth="false").dropdown-button= user.name
 						i.material-icons.right arrow_drop_down
 
